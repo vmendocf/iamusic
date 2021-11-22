@@ -1,0 +1,123 @@
+<html>
+
+<head>
+	<title>Learn Music</title>
+	<meta charset="utf-8" />
+	<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="css/app.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css"
+		integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous" />
+	<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest"></script>
+	<!-- <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@0.12.0"> </script> -->
+	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<script type="text/javascript" src="js/camera.js"></script>
+	<script type="text/javascript" src="js/TrainedModel.js"></script>
+</head>
+
+<body>
+	<!-- <div class="container">
+		<div class="mobilenet-demo-container"> -->
+	<img src="assets/Learn.png" width="150px" class="col-2 offset-5" />
+
+	<!-- <h1 class="text-center">Learn Music</h1> -->
+	<h1 class="text-center h2">Découvre les instruments et apprends !</h1>
+	<button id="load-button" class="input-button" onclick="loadModel()">Load Model</button>
+	<div id="progress-box" style="display: none; width: 100% !important;" class="col-4 offset-6">
+		<img src="assets/loading.gif" id="demo-load" width="100px" />
+	</div>
+	<div class="row">
+		<div class="col-6">
+			<button onclick='ouvrir_camera()' class="btn enter">Prendre une photo</button>
+			<div class="row">
+				<div class="col-3 offset-2">
+					<button onclick='fermer()' class="btn smallbtn ml-4">Désactiver la caméra</button>
+
+				</div>
+				<div class="col-3">
+					<button onclick='photo()' class="btn smallbtn">Clic !</button>
+
+				</div>
+				<div class="col-3">
+
+					<button onclick='sauver()' class="btn smallbtn">Sauvegarder</button>
+				</div>
+			</div>
+		</div>
+		<div class="col-6">
+			<!-- <button id="demo-image-button" class="input-button" onclick="loadDemoImage()">Demo Image</button> -->
+			<!-- <div class="col-4 offset-1"> -->
+			<label for="select-file-image" class="input-button btn enter upload">
+				Charger une image
+			</label>
+
+			<input id="select-file-image" type="file" onchange="loadFile(event)" style="display: none"
+				class="btn enter" />
+			<!-- </div> -->
+		</div>
+
+	</div>
+
+	<div class="row">
+		<div class="marg">
+			<video id="sourcevid" width='400' autoplay="true"></video>
+			<canvas id="cvs" style='display:inline-block'></canvas>
+		</div>
+	</div>
+	<!-- <button onclick='ouvrir_camera()'>Autoriser l'ouverture de la caméra</button> -->
+
+	<!-- <button onclick='prepare_envoi()' >envoyer</button> -->
+	</div>
+
+	<!-- <div id="jaxa" style='width:80%;margin:5px;'>message:</div> -->
+
+
+	<div class="demo-wrapper">
+		<!-- <div class="row"> -->
+
+		<!-- <button id="demo-image-button" class="input-button" onclick="loadDemoImage()">Demo Image</button> -->
+		<!-- <div class="col-4 offset-3">
+				<label for="select-file-image" class="input-button btn enter">
+					Charger une image
+				</label>
+
+				<input id="select-file-image" type="file" onchange="loadFile(event)" style="display: none"
+					class="btn enter" />
+			</div>
+		</div> -->
+		<!-- </div>
+		<div> -->
+		<!-- <div class="row">
+			<button id="predict-button" class="input-button predict-button btn enter large" onclick="predButton()">Quel
+				est cet instrument ?</button>
+		</div> -->
+
+	</div>
+	<div class="demo-output row">
+		<div class="col-8">
+			<div class="out-box" id="select-file-box" style="display: none;">
+				<img id='test-image' />
+			</div>
+		</div>
+		<div class="col-4">
+
+			<div class="out-box" id="predict-box" style="display: none;">
+				<p id="prediction"></p>
+				<br>
+				<p><b style="color: #ffbd59 !important; font-style: italic; font-weight: 100; font-size: 11px;">Top-3
+						Predictions</b></p>
+				<ul id="predict-list">
+				</ul>
+			</div>
+		</div>
+	</div>
+	<!-- </div>
+	</div> -->
+
+	<div class="row">
+		<button id="predict-button" class="input-button predict-button btn enter large" onclick="predButton()">Quel
+			est cet instrument ?</button>
+	</div>
+
+</body>
+
+</html>
